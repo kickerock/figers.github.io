@@ -79,7 +79,7 @@ $(document).ready(function() {
     var imgSrc = $('#owlone .active').find('.main__img').attr('src');
     var nameSrc = $('#owlone .active').find('.buy__header').text();
     $('#modality img').attr('src', imgSrc);
-    $('#modality modal__text').text(nameSrc);
+    $('#modality .modal__text').text(nameSrc);
 
 
   });
