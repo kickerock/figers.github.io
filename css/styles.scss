@@ -1,0 +1,600 @@
+@import 'fonts.scss'; // Define the breakpoints
+$breakpoint-small: 600px;
+$breakpoint-med-small: 960px;
+$breakpoint-med: 1175px;
+@mixin screen($size, $type: max, $pixels: $breakpoint-small) {
+  @if $size == 'small' {
+    @media screen and ($type + -width: $breakpoint-small) {
+      @content;
+    }
+  } @else
+  if $size == 'med-small' {
+    @media screen and ($type + -width: $breakpoint-med-small) {
+      @content;
+    }
+  } @else
+  if $size == 'med' {
+    @media screen and ($type + -width: $breakpoint-med) {
+      @content;
+    }
+  } @else
+  if $size == 'large' {
+    @media screen and ($type + -width: $breakpoint-med) {
+      @content;
+    }
+  } @else
+  if $size == 'custom' {
+    @media screen and ($type + -width: $pixels + px) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+@function calcR($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+@mixin background($imgpath,$positionx: center,$positiony: top,$size: 100%,$repeat: no-repeat) {
+  background: {
+    image: url($imgpath);
+    position-x: $positionx;
+    position-y: $positiony;
+    repeat: $repeat;
+    size: $size;
+  }
+}
+$color1: #ffffff;
+$color2: #333;
+$color3: #ed1c24;
+$color4: #8e8e8e;
+
+body {
+  width: 100%;
+}
+
+nav {
+  .navbar-collapse {
+    flex-basis: auto;
+    flex-grow: 0;
+  }
+  .navbar-toggler {
+    display: none;
+    @include screen(small) {
+      display: block;
+    }
+  }
+  min-height: calcR(60px);
+  background-color: rgba(0,0,0,0.3);
+  @include screen(small) {
+    min-height: auto;
+  }
+
+  .active {
+    border-bottom: calcR(2px) solid $color3;
+    font-weight: 600;
+  }
+
+  .navlogo {
+    @include screen(small) {
+      padding: calcR(8px) 0;
+    }
+
+    span {
+      color: $color3;
+      font-weight: 700;
+    }
+  }
+
+  .buy__item {
+    border: 0.125rem solid white;
+    border-radius: 21px;
+
+    &:hover {
+      border: 0.125rem solid #ffea00;
+    }
+
+    > .active {
+      border-bottom: none;
+      font-weight: 800;
+    }
+  }
+
+  li {
+    padding: 0 calcR(25px);
+    color: $color1;
+    font-family: "Avenir Next Cyr";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.688rem;
+    @include screen(small) {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    a {
+      color: $color1 !important;
+      font-family: "Avenir Next Cyr";
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.688rem;
+    }
+  }
+}
+
+.line {
+  background-color: $color3;
+  width: 7.688rem;
+  height: 0.188rem;
+}
+
+.heads {
+  padding: calcR(10px) 0;
+}
+
+section {
+  min-height: calcR(750px);
+  @include screen(small) {
+    min-height: 31.875rem;
+  }
+}
+
+.top__container {
+  @include background('../img/bgtop.png');
+  background-color: $color1;
+
+  .header__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    text-transform: uppercase;
+    color: $color2;
+  }
+
+  .descr__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: $color4;
+  }
+
+  .price__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 2.625rem;
+    text-transform: uppercase;
+    color: $color3;
+  }
+}
+
+a.col-sm-4 {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+#katalog {
+  padding: calcR(70px) 0;
+
+  .products .col-sm-4 {
+    padding: calcR(70px) calcR(35px);
+    cursor: pointer;
+
+    &:hover {
+      border: 0.125rem solid #ffea00;
+      border-radius: 5px;
+    }
+  }
+
+  .header__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    color: $color2;
+  }
+
+  .descr__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: $color4;
+    padding: calcR(10px) 0;
+  }
+
+  .products {
+    .descr__text {
+      padding-top: calcR(60px);
+    }
+  }
+
+  .price__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 2.625rem;
+    text-transform: uppercase;
+    color: $color3;
+  }
+}
+
+#buy {
+  @include background('../img/bg-gall.png');
+  padding: calcR(105px) 0;
+  @include screen(small) {
+    padding-bottom: 0;
+  }
+
+
+  .container {
+    background-color: $color1;
+  }
+
+  .col-sm-6 {
+    padding: calcR(90px);
+    @include screen(small) {
+      padding: calcR(30px);
+    }
+
+  }
+  .buy__leftone {
+    padding-top: calcR(150px);
+    @include screen(small) {
+      padding: calcR(30px);
+    }
+  }
+  .col-sm-4 {
+    @include screen(small) {
+      padding: calcR(30px) 0;
+    }
+  }
+
+  .thumbs {
+    max-width: 100%;
+    padding: 1rem 0;
+
+    div {
+      cursor: pointer;
+      margin: calcR(10px) 1%;
+      height: 4.2rem;
+      border: 0.063rem solid gainsboro;
+      @include screen(small) {
+        margin: calcR(10px) 0;
+      }
+    }
+
+    .activ {
+      border: 0.063rem solid #ffea00;
+    }
+  }
+
+  .buy__rightone .row {
+    @include screen(small) {
+      -ms-flex-pack: center!important;
+      justify-content: center!important;
+      text-align: center;
+    }
+  }
+
+  .buy__header {
+    font-family: "Avenir Next Cyr";
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    text-transform: uppercase;
+    color: $color2;
+    padding: calcR(25px) 0;
+  }
+
+  .buy__descr {
+    text-align: left;
+    font-family: "Avenir Next Cyr";
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.875rem;
+    color: $color2;
+    padding: calcR(25px) 6rem calcR(25px) 0;
+    @include screen(small) {
+      text-align: center;
+      padding-right: 0;
+    }
+  }
+
+  .buy__price {
+    padding: calcR(25px) 0;
+    font-family: "Avenir Next Cyr";
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    text-transform: uppercase;
+    color: $color3;
+
+    span {
+      font-family: "Avenir Next Cyr";
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.875rem;
+      text-decoration: line-through;
+      text-transform: uppercase;
+      color: $color4;
+      padding-left: 1rem;
+    }
+  }
+
+  .buy__links {
+    padding: calcR(25px) 0;
+  }
+
+  .tbsize {
+    color: $color2;
+    font-family: "Avenir Next Cyr";
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+    border-bottom: 0.063rem solid #ed1c24;
+    text-decoration: none;
+  }
+
+  .buy__button {
+    color: $color1;
+    background-color: $color3;
+    border-radius: 25px;
+    font-family: "Avenir Next Cyr";
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.2rem;
+
+    &:hover {
+      background-color: $color1;
+      color: $color3;
+      border: 2px solid $color3;
+    }
+  }
+}
+
+#gallery {
+  padding: calcR(70px) 0;
+  @include screen(small) {
+    padding: calcR(30px) 0;
+
+    .owl-prev {
+      left: 0.4rem;
+    }
+
+    .owl-next {
+      right: 0.4rem;
+    }
+  }
+
+  .products .col-sm-4 {
+    padding: calcR(70px) calcR(35px);
+    cursor: pointer;
+
+    &:hover {
+      border: 0.125rem solid #ffea00;
+      border-radius: 5px;
+    }
+  }
+
+  .header__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    color: $color2;
+  }
+
+  .descr__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: $color4;
+    padding: calcR(10px) 0;
+  }
+
+  .owl-carousel div.col {
+    padding: calcR(30px) calcR(170px);
+    @include screen(small) {
+      padding: calcR(20px);
+    }
+  }
+}
+
+#delivery {
+  padding: calcR(105px) 0 0;
+  @include screen(small) {}
+  background-color: $color1;
+
+  .header__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    color: $color2;
+  }
+
+  .descr__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: $color4;
+    padding: calcR(10px) 0;
+  }
+
+  .del__block {
+    padding: calcR(40px) 0;
+  }
+
+  .del__block div {
+    padding: calcR(10px) 3.5rem;
+
+    .del__head {
+      padding-top: calcR(40px);
+      padding-bottom: calcR(10px);
+      font-family: "Avenir Next Cyr";
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.563rem;
+      color: $color2;
+    }
+
+    .del__descr {
+      font-family: "Avenir Next Cyr";
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.5rem;
+      color: $color4;
+    }
+  }
+}
+
+#revs {
+  padding: calcR(105px) 0;
+  background-color: whitesmoke;
+
+  .owl-carousel {
+    background-color: $color1;
+  }
+
+  .header__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    color: $color2;
+  }
+
+  .descr__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    color: $color4;
+    padding: calcR(10px) 0;
+  }
+
+  .rev__comm {
+    padding: calcR(30px) calcR(40px);
+
+    img {
+      width: auto;
+      display: inline;
+    }
+  }
+
+  .rev__name {
+    font-family: "Avenir Next Cyr";
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: $color2;
+  }
+
+  .rev__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.5rem;
+    color: $color4;
+  }
+
+  .qt {
+    color: #bbb;
+    font-family: Georgia;
+    font-size: 2.25rem;
+    font-weight: 400;
+  }
+}
+
+footer {
+  background-color: $color2;
+  min-height: calcR(70px);
+
+  .ft__pol a {
+    color: $color1;
+    font-family: "Avenir Next Cyr";
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-decoration: none;
+  }
+}
+
+#modality {
+  text-align: center;
+
+  img {
+    max-width: 60%;
+  }
+
+  .modal__text {
+    font-family: "Avenir Next Cyr";
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.875rem;
+    text-transform: uppercase;
+    color: #333;
+    padding: calcR(10px);
+  }
+
+  .modal-body {
+    padding: calcR(20px);
+
+    button {
+      color: $color1;
+      background-color: #ed1c24;
+      border-radius: 25px;
+      font-family: "Avenir Next Cyr";
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.875rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.4rem 3.2rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color1;
+        color: $color3;
+        border: 2px solid $color3;
+      }
+    }
+  }
+
+  .row {
+    padding: calcR(10px);
+  }
+}
+
+.close {
+  cursor: pointer;
+}
+
+.privacy__text {
+  font-family: "Avenir Next Cyr";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.875rem;
+  text-decoration: none;
+  padding: 0.4rem 3.2rem;
+  font-style: italic;
+  @include screen(small) {
+    padding: 0.4rem 1.2rem;
+  }
+}
+
+#sizes img {
+  width: 100%;
+}
+
+.hidel {}
