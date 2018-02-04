@@ -1,0 +1,19 @@
+{
+  "name": "figers.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kickerock/figers.github.io.git"
+  },
+  "author": "Andrew Narolskii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kickerock/figers.github.io/issues"
+  },
+  "homepage": "https://github.com/kickerock/figers.github.io#readme"
+}

@@ -1,49 +1,7 @@
 @import 'fonts.scss'; // Define the breakpoints
-$breakpoint-small: 600px;
-$breakpoint-med-small: 960px;
-$breakpoint-med: 1175px;
-@mixin screen($size, $type: max, $pixels: $breakpoint-small) {
-  @if $size == 'small' {
-    @media screen and ($type + -width: $breakpoint-small) {
-      @content;
-    }
-  } @else
-  if $size == 'med-small' {
-    @media screen and ($type + -width: $breakpoint-med-small) {
-      @content;
-    }
-  } @else
-  if $size == 'med' {
-    @media screen and ($type + -width: $breakpoint-med) {
-      @content;
-    }
-  } @else
-  if $size == 'large' {
-    @media screen and ($type + -width: $breakpoint-med) {
-      @content;
-    }
-  } @else
-  if $size == 'custom' {
-    @media screen and ($type + -width: $pixels + px) {
-      @content;
-    }
-  } @else {
-    @content;
-  }
-}
-@function calcR($size) {
-  $remSize: $size / 16px;
-  @return $remSize * 1rem;
-}
-@mixin background($imgpath,$positionx: center,$positiony: top,$size: 100%,$repeat: no-repeat) {
-  background: {
-    image: url($imgpath);
-    position-x: $positionx;
-    position-y: $positiony;
-    repeat: $repeat;
-    size: $size;
-  }
-}
+@import 'mixins.scss'; //  mixins
+
+
 $color1: #ffffff;
 $color2: #333;
 $color3: #ed1c24;
@@ -227,7 +185,8 @@ a.col-sm-4 {
 #buy {
   @include background('../img/bg-gall.png');
   padding: calcR(105px) 0;
-  @include screen(small) {
+  @include screen(med-small) {
+    background-repeat: repeat;
     padding-bottom: 0;
   }
 
@@ -238,7 +197,7 @@ a.col-sm-4 {
 
   .col-sm-6 {
     padding: calcR(90px);
-    @include screen(small) {
+    @include screen(med-small) {
       padding: calcR(30px);
     }
 
@@ -264,8 +223,12 @@ a.col-sm-4 {
       margin: calcR(10px) 1%;
       height: 4.2rem;
       border: 0.063rem solid gainsboro;
-      @include screen(small) {
+      @include screen(med-small) {
+        padding: 2%;
         margin: calcR(10px) 0;
+      }
+      @include screen(med) {
+        padding: 2%;
       }
     }
 
@@ -300,7 +263,7 @@ a.col-sm-4 {
     line-height: 1.875rem;
     color: $color2;
     padding: calcR(25px) 6rem calcR(25px) 0;
-    @include screen(small) {
+    @include screen(med-small) {
       text-align: center;
       padding-right: 0;
     }
@@ -352,6 +315,9 @@ a.col-sm-4 {
     text-transform: uppercase;
     text-decoration: none;
     padding: 1rem 2.2rem;
+    @include screen(med) {
+      padding: 1rem;
+    }
 
     &:hover {
       background-color: $color1;
@@ -362,7 +328,7 @@ a.col-sm-4 {
 }
 
 #gallery {
-  padding: calcR(70px) 0;
+  padding: 1.375rem 0;
   @include screen(small) {
     padding: calcR(30px) 0;
 
@@ -411,8 +377,10 @@ a.col-sm-4 {
 }
 
 #delivery {
-  padding: calcR(105px) 0 0;
-  @include screen(small) {}
+  padding: calcR(65px) 0 0;
+  @include screen(med) {
+    padding: 0;
+  }
   background-color: $color1;
 
   .header__text {
@@ -438,6 +406,9 @@ a.col-sm-4 {
 
   .del__block div {
     padding: calcR(10px) 3.5rem;
+    @include screen(med) {
+      padding: 1rem;
+    }
 
     .del__head {
       padding-top: calcR(40px);
