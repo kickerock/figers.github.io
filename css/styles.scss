@@ -1,7 +1,5 @@
 @import 'fonts.scss'; // Define the breakpoints
 @import 'mixins.scss'; //  mixins
-
-
 $color1: #ffffff;
 $color2: #333;
 $color3: #ed1c24;
@@ -16,6 +14,7 @@ nav {
     flex-basis: auto;
     flex-grow: 0;
   }
+
   .navbar-toggler {
     display: none;
     @include screen(small) {
@@ -100,6 +99,10 @@ section {
 .top__container {
   @include background('../img/bgtop.png');
   background-color: $color1;
+
+  .header__lines {
+    padding-top: 40vw;
+  }
 
   .header__text {
     font-family: "Avenir Next Cyr";
@@ -190,7 +193,6 @@ a.col-sm-4 {
     padding-bottom: 0;
   }
 
-
   .container {
     background-color: $color1;
   }
@@ -200,14 +202,15 @@ a.col-sm-4 {
     @include screen(med-small) {
       padding: calcR(30px);
     }
-
   }
+
   .buy__leftone {
     padding-top: calcR(150px);
     @include screen(small) {
       padding: calcR(30px);
     }
   }
+
   .col-sm-4 {
     @include screen(small) {
       padding: calcR(30px) 0;
